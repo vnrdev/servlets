@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" 
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd" version="2.0">
+		
+<tlib-version>1.2</tlib-version>
+
+<short-name>tagTest</short-name>
+
+<uri>randomThings</uri>
+
+<function>
+	<name>randomString</name>
+	<function-class>com.example.RandomStrings</function-class>
+	<function-signature>String getRandomString()</function-signature>
+</function>
+
+<tag>
+	<description>adder</description>
+	<name>add</name>
+	<tag-class>com.example.Adder</tag-class>
+	<body-content>empty</body-content>
+	
+	<attribute>
+		<name>x</name>
+		<required>true</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+	
+	<attribute>
+		<name>y</name>
+		<required>true</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>	
+</tag>
+
+</taglib>
