@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Change Profile</title>
+    </h:head>
+    <h:body>
+        <h:form id="changeprofile">
+            <h:panelGrid columns="2">
+                <h:panelGroup>
+                    <h:outputText value="Highest school degree: " rendered="#{userBean.repairer}"/>
+                    <h:selectOneMenu value="#{userBean.degree}" rendered="#{userBean.repairer}">
+                        <f:selectItems value="#{userBean.degrees}"/>
+                    </h:selectOneMenu>
+                </h:panelGroup><br/>
+                
+                <h:outputLabel for="firstname" value="First name: "/>
+                <h:inputText id="firstname" value="#{userBean.firstname}" required="true" />
+                <h:outputLabel for="lastname" value="Last name: "/>
+                <h:inputText id="lastname" value="#{userBean.lastname}" required="true" />
+
+                <h:outputLabel for="street" value="Street: "/>
+                <h:inputText id="street" value="#{userBean.street}" required="true" />
+                <h:outputLabel for="streetno" value="Street no.: "/>
+                <h:inputText id="streetno" value="#{userBean.streetno}" required="true" />
+                <h:outputLabel for="postalcode" value="Postal code: "/>
+                <h:inputText id="postalcode" value="#{userBean.postalcode}" required="true" />
+                <h:outputLabel for="town" value="Town: "/>
+                <h:inputText id="town" value="#{userBean.town}" required="true" />   
+                <h:outputLabel for="password" value="Password: "/>
+                <h:inputSecret id="password" value="#{changeProfileBean.newPassword}" required="true">
+                    
+                </h:inputSecret>
+                <h:messages />
+                <h:commandButton value="Save Changes" type="submit" action="#{changeProfileBean.submitChanges()}"/>
+                <h:link value="go back to welcome page" outcome="welcome"/>
+                
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>
+

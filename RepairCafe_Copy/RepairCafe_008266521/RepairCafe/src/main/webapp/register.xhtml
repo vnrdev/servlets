@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Register</title>
+    </h:head>
+    <h:body>
+        <h:form id="rform">
+            <h:panelGrid columns="2" id="rgrid">
+                <h:panelGroup id="rgroup">
+                    <h:selectBooleanCheckbox id="repairerchecked" value="#{userBean.repairer}" onchange="submit()"
+                                             valueChangeListener="#{registerBean.valueChanged}"/> I am a repairer<br/>
+                    <h:outputText value="Highest school degree: " rendered="#{userBean.repairer}"/>
+                    
+                    <h:selectOneMenu id="degree" value="#{userBean.degree}" rendered="#{userBean.repairer}">
+                        <f:selectItems id="degrees" value="#{userBean.degrees}"/>
+                        <f:ajax execute="degrees" render="degree" />
+                    </h:selectOneMenu>
+                </h:panelGroup><br/>
+
+                <h:outputLabel for="firstname" value="First name: "/>
+                <h:inputText id="firstname" value="#{userBean.firstname}" required="true" >
+                    <f:validateLength minimum="2" maximum="50"/>
+                </h:inputText>
+                <h:outputLabel for="lastname" value="Last name: "/>
+                    
+                <h:inputText id="lastname" value="#{userBean.lastname}" required="true" >
+                    <f:validateLength minimum="3" maximum="50"/>
+                </h:inputText>
+                <h:outputLabel for="street" value="Street: "/>
+                <h:inputText id="street" value="#{userBean.street}" required="true" >
+                    <f:validateLength minimum="3" maximum="65"/>
+                </h:inputText>
+                <h:outputLabel for="streetno" value="Street no.: "/>
+                <h:inputText id="streetno" value="#{userBean.streetno}" required="true" >
+                    <f:convertNumber/>
+                </h:inputText>
+                <h:outputLabel for="postalcode" value="Postal code: "/>
+                <h:inputText id="postalcode" value="#{userBean.postalcode}" required="true" >
+                    
+                </h:inputText>
+                <h:outputLabel for="town" value="Town: "/>
+                <h:inputText id="town" value="#{userBean.town}" required="true" />
+
+                <h:outputLabel for="email" value="E-mail: "/>
+                <h:inputText id="email" value="#{userBean.username}" required="true">
+                    <f:validator validatorId="userNameCustomValidator"/>
+                </h:inputText>
+                <h:outputLabel for="password" value="Password: "/>
+                <h:inputSecret id="password" value="#{userBean.password}" required="true">
+                    <f:validateLength minimum="3" maximum="30"/>
+                </h:inputSecret>
+
+                <h:commandButton value="Registreer" type="submit" action="#{registerBean.register()}"/>
+
+            </h:panelGrid>
+            <h:messages/>
+        </h:form>
+    </h:body>
+</html>
+

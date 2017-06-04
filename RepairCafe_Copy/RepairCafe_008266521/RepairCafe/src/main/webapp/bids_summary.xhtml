@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Bids per repair</title>
+        <h:outputStylesheet library="css" name="main.css"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p><h2>Bids for this repair: </h2></p>
+            
+            <h:dataTable value="#{bidSummaryBean.bids}" var="b" styleClass="datatable" 
+                         headerClass="datatable-header" rowClasses="datatable-odd-row,datatable-even-row"
+                         
+                         >
+                <h:column>
+                    <f:facet name="header">Bid ID</f:facet>
+                    #{b.bidId}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Accepted</f:facet>
+                    #{b.accepted}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Comment</f:facet>
+                    #{b.comment}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Eligible</f:facet>
+                    #{b.eligible}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Price</f:facet>
+                    #{b.price}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Repair</f:facet>
+                    #{b.repair}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Time</f:facet>
+                    #{b.timestamp}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Type</f:facet>
+                    #{b.type}
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </h:body>
+</html>
+

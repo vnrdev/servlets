@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>My saved open repairs</title>
+        <h:outputStylesheet library="css" name="main.css"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p><h2>My saved open repairs:</h2></p>
+            
+            <h:dataTable value="#{wishListBean.wishList}" var="r" styleClass="datatable" 
+                         headerClass="datatable-header" rowClasses="datatable-odd-row,datatable-even-row">
+                <h:column>
+                    <f:facet name="header">Brand</f:facet>
+                        #{r.item.brand}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Category</f:facet>
+                        #{r.item.category}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Productname</f:facet>
+                        #{r.item.productName}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Defect</f:facet>
+                        #{r.details.defect}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Description</f:facet>
+                        #{r.details.description}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Assigned</f:facet>
+                        #{r.details.assigned}
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </h:body>
+</html>
+

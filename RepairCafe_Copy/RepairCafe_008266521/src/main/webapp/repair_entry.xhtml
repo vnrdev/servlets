@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Submit new repair</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:panelGrid columns="2" cellspacing="20" cellpadding="5">
+                <h:panelGroup>
+                    <h:outputLabel for="productname" value="Productname: "/>
+                    <h:inputText id="productname" value="#{submitRepairBean.productname}" required="true">
+                        <f:validateLength minimum="3" maximum="50"/>
+                    </h:inputText><br/>
+                    
+                    <h:outputLabel for="brand" value="Brand: "/>
+                    <h:selectOneMenu id="brand" value="#{submitRepairBean.brand}">
+                        <f:selectItems id="brands" value="#{submitRepairBean.allBrands}"/>
+                    </h:selectOneMenu><br/>
+
+                    <h:outputLabel for="defect" value="Defect: "/>
+                    <h:selectOneMenu id="defect" value="#{submitRepairBean.defect}">
+                        <f:selectItems id="defects" value="#{submitRepairBean.allDefects}"/>
+                    </h:selectOneMenu><br/>
+                    
+                    <h:outputLabel for="category" value="Category: "/>
+                    <h:selectOneMenu id="category" value="#{submitRepairBean.category}">
+                        <f:selectItems id="categories" value="#{submitRepairBean.allCategories}"/>
+                    </h:selectOneMenu><br/>
+
+                </h:panelGroup><br/>
+
+                <h:panelGroup>
+                    <h:outputLabel for="description" value="Malfunctioning description: "/>
+                    <h:inputText id="description" value="#{submitRepairBean.description}" required="true" >
+                        <f:validateLength minimum="4" maximum="50"/>
+                    </h:inputText><br/>
+
+                    <h:outputLabel for="pricemodel" value="Repair price model: "/>
+                    <h:selectOneMenu id="pricemodel" value="#{submitRepairBean.pricemodel}">
+                        <f:selectItems id="pricemodelList" value="#{submitRepairBean.pricemodelList}"/>
+                        <!--<f:ajax execute="pricemodelList" render="pricemodel"/>-->
+                        <f:converter converterId="enumConverter" />
+                    </h:selectOneMenu><br/>
+                    
+                    <h:outputLabel for="bidduedate" value="Bid due date: "/>
+                    <h:inputText id="bidduedate" value="#{submitRepairBean.dueDate}" required="true" >
+                        <f:converter converterId="dateTimeConverter"/>
+                        <!--<f:convertDateTime pattern="dd-MM-yyyy"/>-->
+                    </h:inputText><br/>
+
+                    <h:commandButton value="submit repair" type="submit" action="#{submitRepairBean.submitRepair()}"/>
+                </h:panelGroup>
+            </h:panelGrid>
+            <h:messages/>
+        </h:form>
+    </h:body>
+</html>
+

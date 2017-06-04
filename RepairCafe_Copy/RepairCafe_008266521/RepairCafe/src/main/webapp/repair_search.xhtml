@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Repair search</title>
+        <h:outputStylesheet library="css" name="main.css"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:outputLabel for="keywordentry" value="Search for an open repair: "/><br/>
+            <h:inputText id="keywordentry" value="#{repairSearchBean.keyword}" />
+            <h:commandButton id="search"  value="Search">
+                <f:ajax execute="keywordentry" render="dt"/>
+            </h:commandButton>    
+            <br/>
+            <h:dataTable id="dt" value="#{repairSearchBean.getOpenRepairsList(repairSearchBean.keyword)}" var="r" 
+                         styleClass="datatable" 
+                         headerClass="datatable-header" 
+                         rowClasses="datatable-odd-row,datatable-even-row">
+                <h:column>
+                    <f:facet name="header">Brand</f:facet>
+                        #{r.item.brand}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Category</f:facet>
+                        #{r.item.category}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Productname</f:facet>
+                        #{r.item.productName}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Defect</f:facet>
+                        #{r.details.defect}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Description</f:facet>
+                        #{r.details.description}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Assigned</f:facet>
+                        #{r.details.assigned}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Action</f:facet>  
+                    <h:commandLink value="Add to favorites" action="#{repairSearchBean.addToWishList(requestScope.r)}"/><br/>
+                    <h:commandLink id="placebid" value="Place bid" action="#{repairSearchBean.placeBidAction()}" rendered="#{not repairSearchBean.editable}"/>                        
+                    <h:inputText id="price" value="#{repairSearchBean.bidprice}" size="10" rendered="#{repairSearchBean.editable}" >
+                        <f:validateLength minimum="1" maximum="4"/>
+                        <f:convertNumber/>
+                    </h:inputText>
+                    <h:commandButton value="Place" action="#{repairSearchBean.placeBid(r, repairSearchBean.bidprice)}" rendered="#{repairSearchBean.editable}"/>
+                        <br/>
+                    <h:commandButton value="See bids for this repair" action="#{repairSearchBean.addRepairForBidSummary(r)}"/>
+                    
+                </h:column>
+            </h:dataTable>
+            <h:messages/>
+        </h:form><br/>
+        <h:link value="Go to my saved repairs" outcome="wishlist"/>
+    </h:body>
+</html>
+
